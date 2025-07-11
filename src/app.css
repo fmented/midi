@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@plugin "daisyui";
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	touch-action: none;
+	overscroll-behavior: none;
+}
+
+.hidden {
+	display: none !important;
+}
+
+@keyframes flyin-down {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes flyin-up {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.flyin-down {
+	animation: flyin-down 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.flyin-up {
+	animation: flyin-up 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.fadein {
+	animation: fadein 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+}
