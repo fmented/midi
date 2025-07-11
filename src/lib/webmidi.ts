@@ -19,10 +19,10 @@ export class WebMidi implements MidiTransport {
 			navigator
 				.requestMIDIAccess()
 				.then((access) => {
-					const inputs = Array.from(Object.values(access.inputs)).filter((i) =>
+					const inputs = Array.from(access.inputs.values()).filter((i) =>
 						i.name?.includes(name ?? '')
 					);
-					const outputs = Array.from(Object.values(access.outputs)).filter((i) =>
+					const outputs = Array.from(access.outputs.values()).filter((i) =>
 						i.name?.includes(name ?? '')
 					);
 					if (inputs.length == 0 && outputs.length == 0) return reject('no device found');
@@ -39,8 +39,8 @@ export class WebMidi implements MidiTransport {
 
 	static list() {
 		return navigator.requestMIDIAccess().then((access) => {
-			const inputs = new Set(Array.from(Object.values(access.inputs)).map((i) => i.name));
-			const outputs = new Set(Array.from(Object.values(access.outputs)).map((i) => i.name));
+			const inputs = new Set(Array.from(access.inputs.values()).map((i) => i.name));
+			const outputs = new Set(Array.from(access.outputs.values()).map((i) => i.name));
 			return Array.from(inputs.intersection(outputs)).filter((i) => typeof i === 'string');
 		});
 	}
